@@ -1,4 +1,4 @@
-**PeachJB - Jailbreak for SapphireOS**
+# **PeachJB - Jailbreak for SapphireOS**
 
 **Description:**
 PeachJB is a comprehensive jailbreak solution tailored for SapphireOS, providing users with enhanced customization options, additional features, and utilities powered by the innovative PeachAPI.
