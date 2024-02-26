@@ -41,16 +41,55 @@ function Locks() {
   if (version < 1.0) {
     console.log("Your SapphireOS version doesnt support: Themezer");
     hideElement("peach.boot.icon.3");
+    console.log("Your SapphireOS version doesnt support: Accessibility");
+    hideElement("peach.boot.icon.5");
   }
 }
 //All Code for PeachJB thats in Beta
 function BetaCode() {
-  //test
-  showElement("peach.boot.icon.4");
-  //Accessibility
-  showElement("peach.boot.icon.5");
-  onEvent("peach.boot.icon.5", "click", function( ) {
-    setScreen("peach.test");
+  //ClickerX
+  var points = 0;
+  var add = 1;
+  var CPS = 0;
+  onEvent("peach.boot.icon.4", "click", function( ) {
+    setScreen("peach.clickerx");
+  });
+  onEvent("peach.clickerx.button.1", "click", function( ) {
+    setScreen("peach.boot");
+  });
+  hideElement("peach.clickerx.button.3");
+  hideElement("peach.clickerx.button.4");
+  hideElement("peach.clickerx.button.5");
+  onEvent("peach.clickerx.button.2", "click", function( ) {
+    points = points + add;
+    setText("peach.clickerx.text.1", points + " Points");
+    if (points > add * 15) {
+      showElement("peach.clickerx.button.3");
+      setText("peach.clickerx.button.3", add + 1 + " Per Click: " + add * 15);
+    }
+    if (points > CPS * 100) {
+      showElement("peach.clickerx.button.4");
+      setText("peach.clickerx.button.4", ((CPS + 1) + " CPS: ") + CPS * 100);
+    }
+    if (points > 1000) {
+      showElement("peach.clickerx.button.5");
+    }
+  });
+  onEvent("peach.clickerx.button.3", "click", function( ) {
+    if (points >= add * 15) {
+      points = points - add * 15;
+      add = add + 1;
+      setText("peach.clickerx.text.1", points + " Points");
+      setText("peach.clickerx.button.3", (add + 1 + " Per Click: ") + add * 15);
+    }
+  });
+  onEvent("peach.clickerx.button.4", "click", function( ) {
+    if (points >= CPS * 100) {
+      points = points - CPS * 100;
+      CPS = CPS + 1;
+      setText("peach.clickerx.text.1", points + " Points");
+      setText("peach.clickerx.button.4", ((CPS + 1) + " CPS: ") + CPS * 100);
+    }
   });
 }
 //The actual Code for PeachJB
@@ -63,7 +102,7 @@ function Code() {
     if (version >= 1.0) {
       setScreen("peach.themezer");
       BetterElementMakerAPI.Dropdown("peach.themezer.dropdown", 30, 65, 260, 40, "12", "rgb(60, 0, 55)", "#ffffff", "#ffffff");
-      setProperty("peach.themezer.dropdown", "options", ["Light", "Dark", "High Contrast", "Purple", "Crystal", "Pink"]);
+      setProperty("peach.themezer.dropdown", "options", ["Light", "Dark", "Purple", "Crystal", "Pink"]);
       setScreen("Homescreen");
     }
   }
@@ -134,6 +173,16 @@ function Code() {
     console.log("Developer Access Granted");
     isDeveloper = 1;
   });
+  //Accessibility
+  onEvent("peach.boot.icon.5", "click", function( ) {
+    setScreen("peach.accessibility");
+  });
+  onEvent("peach.accessibility.button.1", "click", function( ) {
+    setScreen("peach.boot");
+  });
+  onEvent("peach.accessibility.button.2", "click", function( ) {
+    Themezer("Black", "White", "White");
+  });
   //Themezer
   onEvent("peach.boot.icon.3", "click", function( ) {
       setScreen("peach.themezer");
@@ -152,9 +201,6 @@ function Code() {
         Themezer("rgb(60, 0, 55)", "White", "White");
       } else if (getText("peach.themezer.dropdown") == "Crystal") {
         Themezer("rgba(14, 30, 47, 0.67)", "White", "rgba(14, 30, 47, 0.67)");
-      } else if (getText("peach.themezer.dropdown") == "High Contrast") {
-        Themezer("Black", "White", "White");
-        Themezer("Black", "White", "White");
       } else {
         //getText("peach.themezer.dropdown") == "Pink"
       }
@@ -185,7 +231,7 @@ function Code() {
           nextIndex = combinedOutput.indexOf(delimiter, startIndex);
       }
       outputs.push(combinedOutput.substring(startIndex));
-      PeachAPI.Themezer(outputs[0], outputs[1], outputs[2]);
+      Themezer(outputs[0], outputs[1], outputs[2]);
     });
   //konsole
   onEvent("peach.konsole.button.1", "click", function( ) {
@@ -587,4 +633,5 @@ onEvent("app.ainetwork.tokipona", "click", function( ) {
 	themehelper("app.ainetwork.no", MC, AC, BC);
 	themehelper("app.ainetwork.tokipona", MC, AC, BC);
 });
+console.clear();
 }
