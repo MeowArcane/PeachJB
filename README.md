@@ -18,5 +18,6 @@ PeachJB is provided as-is without any warranties. Use at your own risk.
 **Version History:** 
 - Version 1.2.0 - Themezer is now public!
 - ...
+
 **Feedback:**
 We value your feedback! Share your thoughts and suggestions to help us improve PeachJB.
