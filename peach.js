@@ -45,12 +45,12 @@ function Locks() {
     hideElement("peach.boot.icon.5");
   }
 }
+var points = 0;
+var add = 1;
+var CPS = 0;
 //All Code for PeachJB thats in Beta
 function BetaCode() {
   //ClickerX
-  var points = 0;
-  var add = 1;
-  var CPS = 0;
   onEvent("peach.boot.icon.4", "click", function( ) {
     setScreen("peach.clickerx");
   });
@@ -60,40 +60,54 @@ function BetaCode() {
   hideElement("peach.clickerx.button.3");
   hideElement("peach.clickerx.button.4");
   hideElement("peach.clickerx.button.5");
+  setText("peach.clickerx.button.3", add + 1 + " Per Click: " + add * (50 + (add * 5)));
+  setText("peach.clickerx.button.4", ((CPS + 1) + " CPS: ") + ((CPS+1) * (50 + (CPS * 60))));
   onEvent("peach.clickerx.button.2", "click", function( ) {
     points = points + add;
     setText("peach.clickerx.text.1", points + " Points");
-    if (points > add * 15) {
+    if (points >= add * (50 + (add * 5))) {
       showElement("peach.clickerx.button.3");
-      setText("peach.clickerx.button.3", add + 1 + " Per Click: " + add * 15);
+      setText("peach.clickerx.button.3", add + 1 + " Per Click: " + add * (50 + (add * 5)));
     }
-    if (points > CPS * 100) {
+    if (points >= (CPS+1) * (50 + (CPS * 60))) {
+      setText("peach.clickerx.button.4", ((CPS + 1) + " CPS: ") + ((CPS+1) * (50 + (CPS * 60))));
       showElement("peach.clickerx.button.4");
-      setText("peach.clickerx.button.4", ((CPS + 1) + " CPS: ") + CPS * 100);
     }
-    if (points > 1000) {
+    if (points >= 1000) {
       showElement("peach.clickerx.button.5");
     }
   });
   onEvent("peach.clickerx.button.3", "click", function( ) {
-    if (points >= add * 15) {
-      points = points - add * 15;
+    if (points >= add * (50 + (add * 5))) {
+      points = points - (add * (50 + (add * 5)));
       add = add + 1;
       setText("peach.clickerx.text.1", points + " Points");
-      setText("peach.clickerx.button.3", (add + 1 + " Per Click: ") + add * 15);
+      setText("peach.clickerx.button.3", (add + 1 + " Per Click: ") + add * (50 + (add * 5)));
     }
   });
   onEvent("peach.clickerx.button.4", "click", function( ) {
-    if (points >= CPS * 100) {
-      points = points - CPS * 100;
+    if (points >= (CPS+1) * (50 + (CPS * 60))) {
+      stopTimedLoop(1000);
+      points = points - (CPS+1) * (50 + (CPS * 60));
       CPS = CPS + 1;
+      timedLoop(1000, function() {
+        for (var i = 0; i < CPS; i++) {
+          points = points + 1;
+          setText("peach.clickerx.text.1", points + " Points");
+        }
+      });
       setText("peach.clickerx.text.1", points + " Points");
-      setText("peach.clickerx.button.4", ((CPS + 1) + " CPS: ") + CPS * 100);
+      setText("peach.clickerx.button.4", ((CPS + 1) + " CPS: ") + (CPS+1) * (50 + (CPS * 60)));
     }
   });
 }
+//fixes for sapphireOS cuz luke is a bad programmer
+function Patches() {
+  setProperty("icon2", "image", "icon://fa-cogs");
+}
 //The actual Code for PeachJB
 function Code() {
+  Patches();
   //boot
   if (bootedonce == 0) {
     setScreen("Homescreen");
@@ -253,6 +267,17 @@ function Code() {
       setScreen("peach.boot");
     } else if ((getText("peach.konsole.input.1") == "reboot")) {
       boot();
+    } else if ((getText("peach.konsole.input.1") == "5318008")) {
+      setText("peach.konsole.text.1", getText("peach.konsole.input.2") + "<3 \n / >");
+      points = points + 1000000;
+    } else if ((getText("peach.konsole.input.1") == "toki pona li pona!")) {
+      setText("peach.konsole.text.1", getText("peach.konsole.input.2") + "sina lon! \n / >");
+      stopTimedLoop((CPS * 1000));
+      CPS = CPS + 100;
+      timedLoop((CPS * 1000), function() {
+        points = points + 1;
+        setText("peach.clickerx.text.1", points + " Points");
+      });
     } else {
       setText("peach.konsole.text.1", "Invalid Command! \n / >");
     }
@@ -426,53 +451,8 @@ themehelper("bar.24.1", MC, AC, BC);
 themehelper("bar.25", MC, AC, BC);
 themehelper("bar.25.1", MC, AC, BC);
 themehelper("bar.25.1", MC, AC, BC);
-//appstore
-themehelper("app.title.1.1", MC, AC, BC);
-themehelper("appstore.label.1", MC, AC, BC);
-themehelper("appstore.label.2", MC, AC, BC);
-themehelper("appstore.label.3", MC, AC, BC);
-themehelper("appstore.label.4", MC, AC, BC);
-themehelper("appstore.label.5", MC, AC, BC);
-themehelper("appstore.label.6", MC, AC, BC);
-themehelper("appstore.label.7", MC, AC, BC);
-themehelper("appstore.label.8", MC, AC, BC);
-themehelper("icon.appstore1", MC, AC, BC);
-themehelper("icon.appstore2", MC, AC, BC);
-themehelper("icon.appstore3", MC, AC, BC);
-themehelper("icon.appstore4", MC, AC, BC);
-themehelper("icon.appstore5", MC, AC, BC);
-themehelper("icon.appstore6", MC, AC, BC);
-themehelper("icon.appstore7", MC, AC, BC);
-themehelper("icon.appstore8", MC, AC, BC);
-//app titles
-themehelper("app.title.1", MC, AC, BC);
-themehelper("app.title.2", MC, AC, BC);
-themehelper("app.title.3", MC, AC, BC);
-themehelper("app.title.4", MC, AC, BC);
-themehelper("app.title.5", MC, AC, BC);
-themehelper("app.title.6", MC, AC, BC);
-themehelper("app.title.7", MC, AC, BC);
-themehelper("app.title.8", MC, AC, BC);
-themehelper("app.title.9", MC, AC, BC);
-themehelper("app.title.10", MC, AC, BC);
-themehelper("app.title.11", MC, AC, BC);
-themehelper("app.title.14", MC, AC, BC);
-themehelper("app.title.15", MC, AC, BC);
-themehelper("app.title.16", MC, AC, BC);
-themehelper("app.title.19", MC, AC, BC);
-themehelper("app.title.20", MC, AC, BC);
-themehelper("app.title.21", MC, AC, BC);
-themehelper("app.title.22", MC, AC, BC);
-themehelper("changelog", MC, AC, BC);
-themehelper("changelog", MC, AC, BC);
-//dev
-themehelper("dev.userid", MC, AC, BC);
-themehelper("dev.serialnumber", MC, AC, BC);
-themehelper("dev.uiversion", MC, AC, BC);
-themehelper("dev.version", MC, AC, BC);
 
 //bugs:
-//Click app
 
 //My Changes / Fixes
 //too lazy to organize
@@ -482,17 +462,12 @@ themehelper("signinbutton", MC, AC, BC);
 themehelper("signup.switch", MC, AC, BC);
 themehelper("username", MC, AC, BC);
 themehelper("pw", MC, AC, BC);
-themehelper("login.txt", MC, AC, BC);
 themehelper("bar.10.2", MC, AC, BC);
 themehelper("bar.2.2", MC, AC, BC);
 themehelper("settings.passcodes.apply", MC, AC, BC);
 themehelper("window.16", MC, AC, BC);
 themehelper("passcode", MC, AC, BC);
 themehelper("bar.23.b", MC, AC, BC);
-themehelper("window.2.1", MC, AC, BC);
-themehelper("app.title.2.2", MC, AC, BC);
-themehelper("window.2.1", MC, AC, BC);
-themehelper("window.2.1", MC, AC, BC);
 themehelper("window.2.1", MC, AC, BC);
 //Homescreen
 themehelper("icon1", MC, AC, BC);
@@ -509,7 +484,6 @@ themehelper("app.settings.wallpapersbutton", MC, AC, BC);
 themehelper("settings.passcodebutton", MC, AC, BC);
 themehelper("app.settings.aboutbutton", MC, AC, BC);
 themehelper("window.2.1", MC, AC, BC);
-themehelper("app.title.2.1", MC, AC, BC);
 themehelper("settings.userid", MC, AC, BC);
 themehelper("settings.version", MC, AC, BC);
 themehelper("bar.3.1.", MC, AC, BC);
@@ -534,8 +508,8 @@ themehelper("app.appstore.uninstall8", MC, AC, BC);
 themehelper("appstore.1.next", MC, AC, BC);
 themehelper("appstore.1.back", MC, AC, BC);
 //other
+themehelper("changelog", MC, AC, BC);
 themehelper("time.clock", MC, AC, BC);
-themehelper("app.notepad.title", MC, AC, BC);
 themehelper("notepad", MC, AC, BC);
 themehelper("clock.standbymode", MC, AC, BC);
 themehelper("music.to.1.2", MC, AC, BC);
@@ -548,7 +522,6 @@ themehelper("clickx2", MC, AC, BC);
 themehelper("response", MC, AC, BC);
 themehelper("input", MC, AC, BC);
 themehelper("respond", MC, AC, BC);
-themehelper("app.ainetwork.label.1.plugins", MC, AC, BC);
 themehelper("bar.3.2", MC, AC, BC);
 themehelper("bar.3.2.1", MC, AC, BC);
 themehelper("bar.3.2.2", MC, AC, BC);
@@ -633,5 +606,61 @@ onEvent("app.ainetwork.tokipona", "click", function( ) {
 	themehelper("app.ainetwork.no", MC, AC, BC);
 	themehelper("app.ainetwork.tokipona", MC, AC, BC);
 });
+//no bg
+nobg();
 console.clear();
+function nobg() {
+  //other
+  themehelper("login.txt", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("app.title.2.2", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("app.title.2.1", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("app.notepad.title", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("app.ainetwork.label.1.plugins", "rgba(0 0, 0, 0)", AC, BC);
+  //appstore
+  themehelper("app.title.1.1", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("appstore.label.1", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("appstore.label.2", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("appstore.label.3", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("appstore.label.4", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("appstore.label.5", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("appstore.label.6", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("appstore.label.7", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("appstore.label.8", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("icon.appstore1", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("icon.appstore2", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("icon.appstore3", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("icon.appstore4", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("icon.appstore5", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("icon.appstore6", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("icon.appstore7", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("icon.appstore8", "rgba(0 0, 0, 0)", AC, BC);
+  //app titles
+  themehelper("app.title.1", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("app.title.2", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("app.title.3", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("app.title.4", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("app.title.5", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("app.title.6", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("app.title.7", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("app.title.8", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("app.title.9", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("app.title.10", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("app.title.11", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("app.title.14", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("app.title.15", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("app.title.16", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("app.title.19", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("app.title.20", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("app.title.21", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("app.title.22", "rgba(0 0, 0, 0)", AC, BC);
+  //dev
+  themehelper("dev.userid", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("dev.serialnumber", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("dev.uiversion", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("dev.version", "rgba(0 0, 0, 0)", AC, BC);
+  //settings app
+  themehelper("app.title.2.1", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("settings.userid", "rgba(0 0, 0, 0)", AC, BC);
+  themehelper("settings.version", "rgba(0 0, 0, 0)", AC, BC);
+}
 }
