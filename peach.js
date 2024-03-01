@@ -1,6 +1,7 @@
 //NqkDX6Ww_fSR9sNuUAr4Gy-QP9oRDUiG8JQyIm3xwc4
 var isBeta = "0";
 var bootedonce = 0;
+var isaudio = 0;
 //Starts Peach
 function Run() {
   setTimeout(function() {
@@ -17,15 +18,21 @@ function Run() {
 }
 //Checks if version is compatable
 function Check() {
-  if (version < 0.7) {
-    console.log("Your SapphireOS version is too old for PeachJB");
-    return 0;
-  } else if ((version >= 0.7)) {
-    console.log("Welcome to PeachJB");
-    return "1";
+  if (version == "0.1") {
+    console.log("Welcome to PeachJB for AudioOS");
+    isaudio = 1;
+    AudioOS();
   } else {
-    console.log("Your SapphireOS version is unsupported for PeachJB");
-    return 0;
+    if (version < 0.7) {
+      console.log("Your SapphireOS version is too old for PeachJB");
+      return 0;
+    } else if ((version >= 0.7)) {
+      console.log("Welcome to PeachJB");
+      return "1";
+    } else {
+      console.log("Your SapphireOS version is unsupported for PeachJB");
+      return 0;
+    }
   }
 }
 //Enables Beta Features
@@ -52,7 +59,9 @@ var CPS = 0;
 function BetaCode() {
   //ClickerX
   onEvent("peach.boot.icon.4", "click", function( ) {
-    setScreen("peach.clickerx");
+    setTimeout(function() {
+      setScreen("peach.clickerx");
+    }, 50);
   });
   onEvent("peach.clickerx.button.1", "click", function( ) {
     setScreen("peach.boot");
@@ -114,6 +123,11 @@ function Code() {
     BetterElementMakerAPI.Button("p.icon", 87, 355, 140, 40, 10, "#ffffff", "#000000", "Peach", "#ffffff");
     bootedonce = 1;
     if (version >= 1.0) {
+      setScreen("peach.themezer");
+      BetterElementMakerAPI.Dropdown("peach.themezer.dropdown", 30, 65, 260, 40, "12", "rgb(60, 0, 55)", "#ffffff", "#ffffff");
+      setProperty("peach.themezer.dropdown", "options", ["Light", "Dark", "Purple", "Crystal", "Pink"]);
+      setScreen("Homescreen");
+    } else if (version == 0.1) {
       setScreen("peach.themezer");
       BetterElementMakerAPI.Dropdown("peach.themezer.dropdown", 30, 65, 260, 40, "12", "rgb(60, 0, 55)", "#ffffff", "#ffffff");
       setProperty("peach.themezer.dropdown", "options", ["Light", "Dark", "Purple", "Crystal", "Pink"]);
@@ -663,4 +677,9 @@ function nobg() {
   themehelper("settings.userid", "rgba(0 0, 0, 0)", AC, BC);
   themehelper("settings.version", "rgba(0 0, 0, 0)", AC, BC);
 }
+}
+function AudioOS() {
+  Code();
+  hideElement("peach.boot.icon.1");
+  hideElement("peach.boot.icon.2");
 }
