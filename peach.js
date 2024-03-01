@@ -57,58 +57,7 @@ var add = 1;
 var CPS = 0;
 //All Code for PeachJB thats in Beta
 function BetaCode() {
-  //ClickerX
-  onEvent("peach.boot.icon.4", "click", function( ) {
-    setTimeout(function() {
-      setScreen("peach.clickerx");
-    }, 50);
-  });
-  onEvent("peach.clickerx.button.1", "click", function( ) {
-    setScreen("peach.boot");
-  });
-  hideElement("peach.clickerx.button.3");
-  hideElement("peach.clickerx.button.4");
-  hideElement("peach.clickerx.button.5");
-  setText("peach.clickerx.button.3", add + 1 + " Per Click: " + add * (50 + (add * 5)));
-  setText("peach.clickerx.button.4", ((CPS + 1) + " CPS: ") + ((CPS+1) * (50 + (CPS * 60))));
-  onEvent("peach.clickerx.button.2", "click", function( ) {
-    points = points + add;
-    setText("peach.clickerx.text.1", points + " Points");
-    if (points >= add * (50 + (add * 5))) {
-      showElement("peach.clickerx.button.3");
-      setText("peach.clickerx.button.3", add + 1 + " Per Click: " + add * (50 + (add * 5)));
-    }
-    if (points >= (CPS+1) * (50 + (CPS * 60))) {
-      setText("peach.clickerx.button.4", ((CPS + 1) + " CPS: ") + ((CPS+1) * (50 + (CPS * 60))));
-      showElement("peach.clickerx.button.4");
-    }
-    if (points >= 1000) {
-      showElement("peach.clickerx.button.5");
-    }
-  });
-  onEvent("peach.clickerx.button.3", "click", function( ) {
-    if (points >= add * (50 + (add * 5))) {
-      points = points - (add * (50 + (add * 5)));
-      add = add + 1;
-      setText("peach.clickerx.text.1", points + " Points");
-      setText("peach.clickerx.button.3", (add + 1 + " Per Click: ") + add * (50 + (add * 5)));
-    }
-  });
-  onEvent("peach.clickerx.button.4", "click", function( ) {
-    if (points >= (CPS+1) * (50 + (CPS * 60))) {
-      stopTimedLoop(1000);
-      points = points - (CPS+1) * (50 + (CPS * 60));
-      CPS = CPS + 1;
-      timedLoop(1000, function() {
-        for (var i = 0; i < CPS; i++) {
-          points = points + 1;
-          setText("peach.clickerx.text.1", points + " Points");
-        }
-      });
-      setText("peach.clickerx.text.1", points + " Points");
-      setText("peach.clickerx.button.4", ((CPS + 1) + " CPS: ") + (CPS+1) * (50 + (CPS * 60)));
-    }
-  });
+
 }
 //fixes for sapphireOS cuz luke is a bad programmer
 function Patches() {
@@ -122,12 +71,13 @@ function Code() {
     setScreen("Homescreen");
     BetterElementMakerAPI.Button("p.icon", 87, 355, 140, 40, 10, "#ffffff", "#000000", "Peach", "#ffffff");
     bootedonce = 1;
+    setProperty("peach.accessibility.dropdown.1", "options", ["English", "Toki Pona [BETA]"]);
     if (version >= 1.0) {
       setScreen("peach.themezer");
       BetterElementMakerAPI.Dropdown("peach.themezer.dropdown", 30, 65, 260, 40, "12", "rgb(60, 0, 55)", "#ffffff", "#ffffff");
       setProperty("peach.themezer.dropdown", "options", ["Light", "Dark", "Purple", "Crystal", "Pink"]);
       setScreen("Homescreen");
-    } else if (version == 0.1) {
+    } else if ((isaudio == 1)) {
       setScreen("peach.themezer");
       BetterElementMakerAPI.Dropdown("peach.themezer.dropdown", 30, 65, 260, 40, "12", "rgb(60, 0, 55)", "#ffffff", "#ffffff");
       setProperty("peach.themezer.dropdown", "options", ["Light", "Dark", "Purple", "Crystal", "Pink"]);
@@ -141,18 +91,30 @@ function Code() {
   onEvent("p.icon", "click", function( ) {
     setScreen("peach.boot");
   });
+  onEvent("peach.boot.icon.3", "click", function( ) {
+      setScreen("peach.themezer");
+    });
   onEvent("peach.boot.button.1", "click", function( ) {
     setScreen("Homescreen");
-  });
-  onEvent("peach.battmgr.button.2", "click", function( ) {
-    setScreen("peach.boot");
   });
   onEvent("peach.boot.button.2", "click", function( ) {
     setScreen("peach.konsole");
   });
-  //batt
   onEvent("peach.boot.icon.1", "click", function( ) {
     setScreen("peach.battmgr");
+  });
+  onEvent("peach.boot.icon.2", "click", function( ) {
+    setScreen("peach.shortcuts");
+  });
+  onEvent("peach.boot.icon.5", "click", function( ) {
+    setScreen("peach.accessibility");
+  });
+  onEvent("peach.boot.icon.4", "click", function( ) {
+    setScreen("peach.clickerx");
+  });
+  //batt
+  onEvent("peach.battmgr.button.2", "click", function( ) {
+    setScreen("peach.boot");
   });
   onEvent("peach.battmgr.button.1", "click", function( ) {
     for (var i = 0; i < 50; i++) {
@@ -188,9 +150,6 @@ function Code() {
   onEvent("peach.shortcuts.button.2", "click", function( ) {
     IAA();
   });
-  onEvent("peach.boot.icon.2", "click", function( ) {
-    setScreen("peach.shortcuts");
-  });
   onEvent("peach.shortcuts.button.1", "click", function( ) {
     setScreen("peach.boot");
   });
@@ -202,9 +161,6 @@ function Code() {
     isDeveloper = 1;
   });
   //Accessibility
-  onEvent("peach.boot.icon.5", "click", function( ) {
-    setScreen("peach.accessibility");
-  });
   onEvent("peach.accessibility.button.1", "click", function( ) {
     setScreen("peach.boot");
   });
@@ -212,9 +168,6 @@ function Code() {
     Themezer("Black", "White", "White");
   });
   //Themezer
-  onEvent("peach.boot.icon.3", "click", function( ) {
-      setScreen("peach.themezer");
-    });
   onEvent("peach.themezer.button.1", "click", function( ) {
       setScreen("peach.boot");
     });
@@ -261,6 +214,53 @@ function Code() {
       outputs.push(combinedOutput.substring(startIndex));
       Themezer(outputs[0], outputs[1], outputs[2]);
     });
+    //ClickerX
+  onEvent("peach.clickerx.button.1", "click", function( ) {
+    setScreen("peach.boot");
+  });
+  hideElement("peach.clickerx.button.3");
+  hideElement("peach.clickerx.button.4");
+  hideElement("peach.clickerx.button.5");
+  setText("peach.clickerx.button.3", add + 1 + " Per Click: " + add * (50 + (add * 5)));
+  setText("peach.clickerx.button.4", ((CPS + 1) + " CPS: ") + ((CPS+1) * (50 + (CPS * 60))));
+  onEvent("peach.clickerx.button.2", "click", function( ) {
+    points = points + add;
+    setText("peach.clickerx.text.1", points + " Points");
+    if (points >= add * (50 + (add * 5))) {
+      showElement("peach.clickerx.button.3");
+      setText("peach.clickerx.button.3", add + 1 + " Per Click: " + add * (50 + (add * 5)));
+    }
+    if (points >= (CPS+1) * (50 + (CPS * 60))) {
+      setText("peach.clickerx.button.4", ((CPS + 1) + " CPS: ") + ((CPS+1) * (50 + (CPS * 60))));
+      showElement("peach.clickerx.button.4");
+    }
+    if (points >= 1000) {
+      showElement("peach.clickerx.button.5");
+    }
+  });
+  onEvent("peach.clickerx.button.3", "click", function( ) {
+    if (points >= add * (50 + (add * 5))) {
+      points = points - (add * (50 + (add * 5)));
+      add = add + 1;
+      setText("peach.clickerx.text.1", points + " Points");
+      setText("peach.clickerx.button.3", (add + 1 + " Per Click: ") + add * (50 + (add * 5)));
+    }
+  });
+  onEvent("peach.clickerx.button.4", "click", function( ) {
+    if (points >= (CPS+1) * (50 + (CPS * 60))) {
+      stopTimedLoop(1000);
+      points = points - (CPS+1) * (50 + (CPS * 60));
+      CPS = CPS + 1;
+      timedLoop(1000, function() {
+        for (var i = 0; i < CPS; i++) {
+          points = points + 1;
+          setText("peach.clickerx.text.1", points + " Points");
+        }
+      });
+      setText("peach.clickerx.text.1", points + " Points");
+      setText("peach.clickerx.button.4", ((CPS + 1) + " CPS: ") + (CPS+1) * (50 + (CPS * 60)));
+    }
+  });
   //konsole
   onEvent("peach.konsole.button.1", "click", function( ) {
     setScreen("peach.boot");
@@ -298,9 +298,6 @@ function Code() {
     //(getText("peach.konsole.input.1") == "str"))
   });
   //test
-  onEvent("peach.boot.icon.4", "click", function( ) {
-    setScreen("peach.test");
-  });
   onEvent("peach.test.button.1", "click", function( ) {
     setScreen("peach.boot");
   });
@@ -680,6 +677,7 @@ function nobg() {
 }
 function AudioOS() {
   Code();
+  setPosition("p.icon", 87, 300, 140, 40);
   hideElement("peach.boot.icon.1");
   hideElement("peach.boot.icon.2");
 }
