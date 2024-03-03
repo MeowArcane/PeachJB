@@ -48,8 +48,10 @@ function Locks() {
   if (version < 1.0) {
     console.log("Your SapphireOS version doesnt support: Themezer");
     hideElement("peach.boot.icon.3");
-    console.log("Your SapphireOS version doesnt support: Accessibility");
     hideElement("peach.boot.icon.5");
+  }
+  if (isaudio == 1) {
+    console.log("AudioOS doesnt support: Batteries");
   }
 }
 var points = 0;
@@ -72,17 +74,16 @@ function Code() {
     BetterElementMakerAPI.Button("p.icon", 87, 355, 140, 40, 10, "#ffffff", "#000000", "Peach", "#ffffff");
     bootedonce = 1;
     setProperty("peach.accessibility.dropdown.1", "options", ["English", "Toki Pona [BETA]"]);
+    setScreen("peach.themezer");
     if (version >= 1.0) {
-      setScreen("peach.themezer");
       BetterElementMakerAPI.Dropdown("peach.themezer.dropdown", 30, 65, 260, 40, "12", "rgb(60, 0, 55)", "#ffffff", "#ffffff");
       setProperty("peach.themezer.dropdown", "options", ["Light", "Dark", "Purple", "Crystal", "Pink"]);
-      setScreen("Homescreen");
     } else if ((isaudio == 1)) {
-      setScreen("peach.themezer");
       BetterElementMakerAPI.Dropdown("peach.themezer.dropdown", 30, 65, 260, 40, "12", "rgb(60, 0, 55)", "#ffffff", "#ffffff");
       setProperty("peach.themezer.dropdown", "options", ["Light", "Dark", "Purple", "Crystal", "Pink"]);
       setScreen("Homescreen");
     }
+    setScreen("Homescreen");
   }
   setProperty("p.icon", "border-width", 3);
   setProperty("p.icon", "border-color", "black");
@@ -143,9 +144,11 @@ function Code() {
     }
     console.log("Developer Access Granted");
     isDeveloper = 1;
-    isinf = 1;
-    batteries = "Infinite";
-    setText("peach.battmgr.label", batteries + "%");
+    if (version >= 0.9) {
+      isinf = 1;
+      batteries = "Infinite";
+      setText("peach.battmgr.label", batteries + "%");
+    }
   });
   onEvent("peach.shortcuts.button.2", "click", function( ) {
     IAA();
@@ -677,7 +680,13 @@ function nobg() {
 }
 function AudioOS() {
   Code();
-  setPosition("p.icon", 87, 300, 140, 40);
+  //AudioOS specific patches for peach
+  setPosition("p.icon", 87, 235, 140, 40);
   hideElement("peach.boot.icon.1");
   hideElement("peach.boot.icon.2");
+  //Patches - Show Info on Menu
+  showElement("song.overlay");
+  showElement("song.composer.img");
+  showElement("song.composer");
+  showElement("song.song");
 }
