@@ -7,7 +7,7 @@ PeachJB is a comprehensive jailbreak solution tailored for SapphireOS, providing
 - Custom Theming: Personalize the appearance of SapphireOS by adjusting background colors, border colors, text colors, and icon colors.
 - Shortcut App: Streamline your workflow with shortcuts.
 - Battery Charger App: Seamlessly manage battery charging and access the exclusive InfiniteCharge feature.
-- 
+  
 **Disclaimer:**
 PeachJB is provided as-is without any warranties. Use at your own risk.
 
