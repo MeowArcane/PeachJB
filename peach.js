@@ -59,7 +59,7 @@ var add = 1;
 var CPS = 0;
 //All Code for PeachJB thats in Beta
 function BetaCode() {
-
+showElement("peach.accessibility.dropdown.1");
 }
 //fixes for sapphireOS cuz luke is a bad programmer
 function Patches() {
@@ -74,6 +74,7 @@ function Code() {
     BetterElementMakerAPI.Button("p.icon", 87, 355, 140, 40, 10, "#ffffff", "#000000", "Peach", "#ffffff");
     bootedonce = 1;
     setProperty("peach.accessibility.dropdown.1", "options", ["English", "Toki Pona [BETA]"]);
+    hideElement("peach.accessibility.dropdown.1");
     setScreen("peach.themezer");
     if (version >= 1.0) {
       BetterElementMakerAPI.Dropdown("peach.themezer.dropdown", 30, 65, 260, 40, "12", "rgb(60, 0, 55)", "#ffffff", "#ffffff");
@@ -81,7 +82,6 @@ function Code() {
     } else if ((isaudio == 1)) {
       BetterElementMakerAPI.Dropdown("peach.themezer.dropdown", 30, 65, 260, 40, "12", "rgb(60, 0, 55)", "#ffffff", "#ffffff");
       setProperty("peach.themezer.dropdown", "options", ["Light", "Dark", "Purple", "Crystal", "Pink"]);
-      setScreen("Homescreen");
     }
     setScreen("Homescreen");
   }
@@ -124,10 +124,12 @@ function Code() {
     }
   });
   timedLoop(100, function() {
-    setText("peach.battmgr.label", batteries + "%");
-    if (isinf == 1) {
-      batteries = "Infinite";
+    if (isaudio != 1) {
       setText("peach.battmgr.label", batteries + "%");
+      if (isinf == 1) {
+        batteries = "Infinite";
+        setText("peach.battmgr.label", batteries + "%");
+      }
     }
   });
   var isinf = 0;
@@ -684,6 +686,8 @@ function AudioOS() {
   setPosition("p.icon", 87, 235, 140, 40);
   hideElement("peach.boot.icon.1");
   hideElement("peach.boot.icon.2");
+  //Patches - General Fixes
+  setProperty("app.title.2", "font-size", 36);
   //Patches - Show Info on Menu
   showElement("song.overlay");
   showElement("song.composer.img");
