@@ -18,8 +18,10 @@
 **2b. Initialization Process:**
    Once the library has been successfully imported, execute the following code snippet at the beginning of the boot function to initialize PeachJB:
    ```javascript
-   PeachAPI.Run();
+   PeachAPI.Run("OS");
    ```
+   Set "OS" to the OS, EX: "AudioOS", "SapphireOS"
+   Note: having none defaults to SapphireOS
 
 # **Step 3: Importing PeachJB Screens**
 
