@@ -2,10 +2,11 @@
 var isBeta = "0";
 var bootedonce = 0;
 var isaudio = 0;
+var OS = "";
 //Starts Peach
-function Run() {
+function Run(OS) {
   setTimeout(function() {
-    if (Check() == "1") {
+    if (Check(OS) == "1") {
       Code();
       Locks();
       setTimeout(function() {
@@ -17,12 +18,12 @@ function Run() {
   }, 5);
 }
 //Checks if version is compatable
-function Check() {
-  if (version == "0.1") {
+function Check(OS) {
+  if (OS == "AudioOS") {
     console.log("Welcome to PeachJB for AudioOS");
     isaudio = 1;
     AudioOS();
-  } else {
+  } else if ((OS == "" || OS == "SapphireOS")) {
     if (version < 0.7) {
       console.log("Your SapphireOS version is too old for PeachJB");
       return 0;
