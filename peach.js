@@ -2,11 +2,14 @@
 var isBeta = "0";
 var bootedonce = 0;
 var isaudio = 0;
-var OS = "";
+var currentOS = "";
+var Homescreen = "Homescreen";
+var versionvar = "version";
 //Starts Peach
 function Run(OS) {
   setTimeout(function() {
     if (Check(OS) == "1") {
+      currentOS = OS;
       Code();
       Locks();
       setTimeout(function() {
@@ -23,7 +26,7 @@ function Check(OS) {
     console.log("Welcome to PeachJB for AudioOS");
     isaudio = 1;
     AudioOS();
-  } else if ((OS == "" || OS == "SapphireOS")) {
+  } else if (OS == "SapphireOS") {
     if (version < 0.7) {
       console.log("Your SapphireOS version is too old for PeachJB");
       return 0;
@@ -34,6 +37,12 @@ function Check(OS) {
       console.log("Your SapphireOS version is unsupported for PeachJB");
       return 0;
     }
+  } else if ((OS == "AuroraOS")) {
+    console.log("Welcome to PeachJB for AuroraOS");
+    isaurora = 1;
+    Homescreen = "Home";
+    versionvar = "Version";
+    AuroraOS();
   }
 }
 //Enables Beta Features
@@ -42,11 +51,11 @@ function Beta() {
 }
 //Locks certain version-specific features 
 function Locks() {
-  if (version < 0.9) {
+  if (versionvar < 0.9) {
     console.log("Your SapphireOS version doesnt support: Infinite charge");
     hideElement("peach.battmgr.button.3");
   }
-  if (version < 1.0) {
+  if (versionvar < 1.0) {
     console.log("Your SapphireOS version doesnt support: Themezer");
     hideElement("peach.boot.icon.3");
     hideElement("peach.boot.icon.5");
@@ -71,20 +80,20 @@ function Code() {
   Patches();
   //boot
   if (bootedonce == 0) {
-    setScreen("Homescreen");
+    setScreen(Homescreen);
     BetterElementMakerAPI.Button("p.icon", 87, 355, 140, 40, 10, "#ffffff", "#000000", "Peach", "#ffffff");
     bootedonce = 1;
     setProperty("peach.accessibility.dropdown.1", "options", ["English", "Toki Pona [BETA]"]);
     hideElement("peach.accessibility.dropdown.1");
     setScreen("peach.themezer");
-    if (version >= 1.0) {
+    if (versionvar >= 1.0) {
       BetterElementMakerAPI.Dropdown("peach.themezer.dropdown", 30, 65, 260, 40, "12", "rgb(60, 0, 55)", "#ffffff", "#ffffff");
       setProperty("peach.themezer.dropdown", "options", ["Light", "Dark", "Purple", "Crystal", "Pink"]);
     } else if ((isaudio == 1)) {
       BetterElementMakerAPI.Dropdown("peach.themezer.dropdown", 30, 65, 260, 40, "12", "rgb(60, 0, 55)", "#ffffff", "#ffffff");
       setProperty("peach.themezer.dropdown", "options", ["Light", "Dark", "Purple", "Crystal", "Pink"]);
     }
-    setScreen("Homescreen");
+    setScreen(Homescreen);
   }
   setProperty("p.icon", "border-width", 3);
   setProperty("p.icon", "border-color", "black");
@@ -97,7 +106,7 @@ function Code() {
       setScreen("peach.themezer");
     });
   onEvent("peach.boot.button.1", "click", function( ) {
-    setScreen("Homescreen");
+    setScreen(Homescreen);
   });
   onEvent("peach.boot.button.2", "click", function( ) {
     setScreen("peach.konsole");
@@ -160,7 +169,7 @@ function Code() {
     setScreen("peach.boot");
   });
   onEvent("peach.shortcuts.button.3", "click", function( ) {
-    if (version >= 0.9) {
+    if (versionvar >= 0.9) {
       showElement("bar.0.dev");
     }
     console.log("Developer Access Granted");
@@ -280,7 +289,7 @@ function Code() {
     } else if ((getText("peach.konsole.input.1") == "print")) {
       setText("peach.konsole.text.1", getText("peach.konsole.input.2") + "\n / >");
     } else if ((getText("peach.konsole.input.1") == "version")) {
-      setText("peach.konsole.text.1", Technicalversion + "\n / >");
+      setText("peach.konsole.text.1", versionvar + "\n / >");
     } else if ((getText("peach.konsole.input.1") == "home")) {
       setScreen("Login");
     } else if ((getText("peach.konsole.input.1") == "exit")) {
@@ -694,4 +703,10 @@ function AudioOS() {
   showElement("song.composer.img");
   showElement("song.composer");
   showElement("song.song");
+}
+function AuroraOS() {
+  Code();
+  //AuroraOS specific patches for peach
+  setPosition("p.icon", 87, 300, 140, 40);
+  hideElement("peach.boot.icon.2");
 }
