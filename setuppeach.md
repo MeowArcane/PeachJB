@@ -21,7 +21,6 @@
    PeachAPI.Run("OS");
    ```
    Set "OS" to the OS, EX: "AudioOS", "SapphireOS"
-   Note: having none defaults to SapphireOS
 
 # **Step 3: Importing PeachJB Screens**
 
