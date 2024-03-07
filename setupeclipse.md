@@ -13,7 +13,7 @@
 **2a. Importing Library:**
    This step involves importing the necessary Eclipse library into AuroraOS. Follow the instructions below to ensure successful integration:
    - Click on the cog icon adjacent to the "Toolbox" section.
-   - Select "Manage Libraries" and proceed to paste the following unique identifier into the designated field: `NqkDX6Ww_fSR9sNuUAr4Gy-QP9oRDUiG8JQyIm3xwc4` (Please note that this identifier is case-sensitive).
+   - Select "Manage Libraries" and proceed to paste the following unique identifier into the designated field: `[COMING SOON]` (Please note that this identifier is case-sensitive).
    
 **2b. Initialization Process:**
    Once the library has been successfully imported, execute the following code snippet at the beginning of the code to initialize Eclipse:
