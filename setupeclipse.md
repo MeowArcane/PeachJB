@@ -26,10 +26,10 @@
 
 **3a. Screens:**
    Youll need the screens Eclipse, so follow these steps:
-   - Obtain the latest link from [here](https://discord.com/channels/1194396620872229004/1208892766013095996).
    - Access the "Design" tab within AuroraOS.
    - Navigate to the screen listing section and select "Import Screens".
-   - Paste the obtained link and proceed to select all screens prefixed with "peach".
+   - Paste the following link and proceed to select all screens.
+Link: [https://studio.code.org/projects/applab/1UE3zMlq8W5LH3DQCwhtO1KK_PW6cbddG2ObLq0Yh3c/edit](https://studio.code.org/projects/applab/1UE3zMlq8W5LH3DQCwhtO1KK_PW6cbddG2ObLq0Yh3c/edit)
 
 # **Step 4: Optional Enhancements**
 
