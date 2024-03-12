@@ -64,7 +64,7 @@ function Locks() {
 }
 //All Code for Eclipse thats in Beta
 function BetaCode() {
-showElement("Eclipse.accessibility.dropdown.1");
+
 }
 //Sets Icons for Eclipe's homescreen
 function SetIcons() {
@@ -96,6 +96,103 @@ function SetIcons() {
   hideElement("Eclipse.boot.icon.7");
   hideElement("Eclipse.boot.icon.8");
 }
+//Sets Lang
+function SetLanguage(dalang) {
+  if (dalang == "Dock") {
+    setText("p.icon", "Tewam");
+    //Eclipse.boot
+    setText("Eclipse.boot.text.1", "sowi a Tewam. e pimo;sanja kuwirr anum mom Luke wewom;es");
+    setText("Eclipse.boot.icon.1", "poko");
+    setText("Eclipse.boot.icon.2", "pon;je");
+    setText("Eclipse.boot.icon.3", "tupom;sanja");
+    setText("Eclipse.boot.icon.4", "narr'keno");
+    setText("Eclipse.boot.icon.5", "minen;ja");
+    setText("Eclipse.boot.icon.6", "torr");
+    setText("Eclipse.boot.icon.7", "torr");
+    setText("Eclipse.boot.icon.8", "torr");
+    setText("Eclipse.boot.button.1", "sim");
+    setText("Eclipse.boot.button.2", "semam");
+    setProperty("Eclipse.boot.icon.3", "font-size", 11);
+    setProperty("Eclipse.boot.icon.5", "font-size", 14);
+    //Eclipse.battmgr
+    setText("Eclipse.battmgr.button.2", "sim");
+    setText("Eclipse.battmgr.button.1", "mesirr poko");
+    setText("Eclipse.battmgr.button.3", "wuwo mesirr poko");
+    //Eclipse.shortcuts
+    setText("Eclipse.shortcuts.button.1", "sim");
+    setText("Eclipse.shortcuts.button.2", "nitom mom miwam");
+    setText("Eclipse.shortcuts.button.3", "wurr;desa kurr");
+    setText("Eclipse.shortcuts.button.4", "som;fel");
+    //Eclipse.clickerx
+    setText("Eclipse.clickerx.button.1", "sim");
+    setText("Eclipse.clickerx.button.2", "narr!");
+    //Eclipse.accessibility
+    setText("Eclipse.accessibility.button.1", "sim");
+    setText("Eclipse.accessibility.button.2", "tamin;eja pu");
+  } else if ((dalang == "Dock Script")) {
+    setText("p.icon", "Tewam");
+    //Eclipse.boot
+    setText("Eclipse.boot.text.1", "иющф а Tewam. ё дфъю;иаьга кцщфя аьцъ ъюъ Luke щёщюъ;ёи");
+    setText("Eclipse.boot.icon.1", "дюкю");
+    setText("Eclipse.boot.icon.2", "дюь;гё");
+    setText("Eclipse.boot.icon.3", "эцдюъ;иаьга");
+    setText("Eclipse.boot.icon.4", "ьая'кёью");
+    setText("Eclipse.boot.icon.5", "ъфьёь;га");
+    setText("Eclipse.boot.icon.6", "эюя");
+    setText("Eclipse.boot.icon.7", "эюя");
+    setText("Eclipse.boot.icon.8", "эюя");
+    setText("Eclipse.boot.button.1", "ифъ");
+    setText("Eclipse.boot.button.2", "иёъаъ");
+    setProperty("Eclipse.boot.icon.3", "font-size", 11);
+    setProperty("Eclipse.boot.icon.5", "font-size", 14);
+    //Eclipse.battmgr
+    setText("Eclipse.battmgr.button.2", "ифъ");
+    setText("Eclipse.battmgr.button.1", "ъёифя дюкю");
+    setText("Eclipse.battmgr.button.3", "щцщю ъёифя дюкю");
+    //Eclipse.shortcuts
+    setText("Eclipse.shortcuts.button.1", "ифъ");
+    setText("Eclipse.shortcuts.button.2", "ьфэюъ ъюъ ъфщаъ");
+    setText("Eclipse.shortcuts.button.3", "щця;dёиа кця");
+    setText("Eclipse.shortcuts.button.4", "июъ;пёl");
+    //Eclipse.clickerx
+    setText("Eclipse.clickerx.button.1", "ифъ");
+    setText("Eclipse.clickerx.button.2", "ьая!");
+    //Eclipse.accessibility
+    setText("Eclipse.accessibility.button.1", "ифъ");
+    setText("Eclipse.accessibility.button.2", "эаъфь;ёга дц");
+  } else if ((dalang == "English")) {
+    setText("p.icon", "Eclipse");
+    //Eclipse.boot
+    setText("Eclipse.boot.text.1", "Welcome to Eclipse.\nA better jailbreak for All Luke OSes");
+    setText("Eclipse.boot.icon.1", "Battery");
+    setText("Eclipse.boot.icon.2", "Shortcuts");
+    setText("Eclipse.boot.icon.3", "Themezer");
+    setText("Eclipse.boot.icon.4", "ClickerX");
+    setText("Eclipse.boot.icon.5", "Accessibility");
+    setText("Eclipse.boot.icon.6", "placeholder");
+    setText("Eclipse.boot.icon.7", "placeholder");
+    setText("Eclipse.boot.icon.8", "placeholder");
+    setText("Eclipse.boot.button.1", "Back");
+    setText("Eclipse.boot.button.2", "Konsole");
+    setProperty("Eclipse.boot.icon.3", "font-size", 14);
+    setProperty("Eclipse.boot.icon.5", "font-size", 11);
+    //Eclipse.battmgr
+    setText("Eclipse.battmgr.button.2", "Back");
+    setText("Eclipse.battmgr.button.1", "Recharge");
+    setText("Eclipse.battmgr.button.3", "Inf Charge");
+    //Eclipse.shortcuts
+    setText("Eclipse.shortcuts.button.1", "Back");
+    setText("Eclipse.shortcuts.button.2", "Install all apps");
+    setText("Eclipse.shortcuts.button.3", "Enable Dev");
+    setText("Eclipse.shortcuts.button.4", "Testing");
+    //Eclipse.clickerx
+    setText("Eclipse.clickerx.button.1", "Back");
+    setText("Eclipse.clickerx.button.2", "Click!");
+    //Eclipse.accessibility
+    setText("Eclipse.clickerx.button.1", "Back");
+    setText("Eclipse.accessibility.button.2", "High Contrast Mode");
+  }
+}
 //fixes for sapphireOS cuz luke is a bad programmer
 function Patches() {
   
@@ -113,8 +210,7 @@ function Code() {
   }
   setProperty("p.icon", "border-width", 3);
   //boot
-  setProperty("Eclipse.accessibility.dropdown.1", "options", ["English", "Toki Pona [BETA]", "Dock [BETA]"]);
-  hideElement("Eclipse.accessibility.dropdown.1");
+  setProperty("Eclipse.accessibility.dropdown.1", "options", ["English", "Dock", "Dock Script"]);
   setScreen("Eclipse.themezer");
   BetterElementMakerAPI.Dropdown("Eclipse.themezer.dropdown", 30, 65, 260, 40, "12", "rgb(60, 0, 55)", "#ffffff", "#ffffff");
   setProperty("Eclipse.themezer.dropdown", "options", ["Light", "Dark", "Purple", "Crystal", "Pink"]);
@@ -166,6 +262,13 @@ function Code() {
   hideElement("Eclipse.shortcuts.button.4");
   //Accessibility
   onEvent("Eclipse.accessibility.button.1", "click", function( ) {
+    if (getNumber("Eclipse.accessibility.dropdown.1") == "Dock") {
+      SetLanguage("Dock");
+    } else if ((getText("Eclipse.accessibility.dropdown.1") == "Dock Script")) {
+      SetLanguage("Dock Script");
+    } else {
+      SetLanguage("English");
+    }
     setScreen("Eclipse.boot");
   });
   onEvent("Eclipse.accessibility.button.2", "click", function( ) {
@@ -252,7 +355,7 @@ function Code() {
       points = points - (add * (50 + (add * 5)));
       add = add + 1;
       setText("Eclipse.clickerx.text.1", points + " Points");
-      setText("Eclipse.clickerx.button.3", (add + 1 + " Per Click: ") + add * (50 + (add * 5)));
+      setText("Eclipse.clickerx.button.3", ((add + 1) + " Per Click: ") + add * (50 + (add * 5)));
     }
   });
   onEvent("Eclipse.clickerx.button.4", "click", function( ) {
