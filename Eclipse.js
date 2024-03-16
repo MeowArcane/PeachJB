@@ -3,8 +3,11 @@ var isBeta = "0";
 var currentOS = "";
 var Homescreen = "Home";
 var versionvar = "Version";
+var ran = 0;
+//Run("TestOS");
 //Starts Eclipse
 function Run(OS) {
+  ran = 1;
   setTimeout(function() {
     if (Check(OS) == "1") {
       currentOS = OS;
@@ -46,6 +49,15 @@ function Check(OS) {
     versionvar = "version";
     EchoLake();
     return 1;
+  } else if (OS == "TestOS") {
+    console.log("Welcome to Eclipse for the TestOS");
+    currentOS = "TestOS";
+    Homescreen = "testHomescreen";
+    versionvar = "testversion";
+    TestOS();
+    return 1;
+  } else {
+    
   }
 }
 //Enables Beta Features
@@ -98,41 +110,10 @@ function SetIcons() {
 }
 //Sets Lang
 function SetLanguage(dalang) {
-  if (dalang == "Dock") {
+  if (dalang == "Dock Script") {
     setText("p.icon", "Tewam");
     //Eclipse.boot
-    setText("Eclipse.boot.text.1", "sowi a Tewam. e pimo;sanja kuwirr anum mom Luke wewom;es");
-    setText("Eclipse.boot.icon.1", "poko");
-    setText("Eclipse.boot.icon.2", "pon;je");
-    setText("Eclipse.boot.icon.3", "tupom;sanja");
-    setText("Eclipse.boot.icon.4", "narr'keno");
-    setText("Eclipse.boot.icon.5", "minen;ja");
-    setText("Eclipse.boot.icon.6", "torr");
-    setText("Eclipse.boot.icon.7", "torr");
-    setText("Eclipse.boot.icon.8", "torr");
-    setText("Eclipse.boot.button.1", "sim");
-    setText("Eclipse.boot.button.2", "semam");
-    setProperty("Eclipse.boot.icon.3", "font-size", 11);
-    setProperty("Eclipse.boot.icon.5", "font-size", 14);
-    //Eclipse.battmgr
-    setText("Eclipse.battmgr.button.2", "sim");
-    setText("Eclipse.battmgr.button.1", "mesirr poko");
-    setText("Eclipse.battmgr.button.3", "wuwo mesirr poko");
-    //Eclipse.shortcuts
-    setText("Eclipse.shortcuts.button.1", "sim");
-    setText("Eclipse.shortcuts.button.2", "nitom mom miwam");
-    setText("Eclipse.shortcuts.button.3", "wurr;desa kurr");
-    setText("Eclipse.shortcuts.button.4", "som;fel");
-    //Eclipse.clickerx
-    setText("Eclipse.clickerx.button.1", "sim");
-    setText("Eclipse.clickerx.button.2", "narr!");
-    //Eclipse.accessibility
-    setText("Eclipse.accessibility.button.1", "sim");
-    setText("Eclipse.accessibility.button.2", "tamin;eja pu");
-  } else if ((dalang == "Dock Script")) {
-    setText("p.icon", "Tewam");
-    //Eclipse.boot
-    setText("Eclipse.boot.text.1", "иющф а Tewam. ё дфъю;иаьга кцщфя аьцъ ъюъ Luke щёщюъ;ёи");
+    setText("Eclipse.boot.text.1", "иющф а Tewam. ё дфъю;иаьга кцщфя аьцъ ъюъ щёщюъ;ёи");
     setText("Eclipse.boot.icon.1", "дюкю");
     setText("Eclipse.boot.icon.2", "дюь;гё");
     setText("Eclipse.boot.icon.3", "эцдюъ;иаьга");
@@ -160,10 +141,12 @@ function SetLanguage(dalang) {
     //Eclipse.accessibility
     setText("Eclipse.accessibility.button.1", "ифъ");
     setText("Eclipse.accessibility.button.2", "эаъфь;ёга дц");
+  } else if ((dalang == "Dock Script")) {
+    
   } else if ((dalang == "English")) {
     setText("p.icon", "Eclipse");
     //Eclipse.boot
-    setText("Eclipse.boot.text.1", "Welcome to Eclipse.\nA better jailbreak for All Luke OSes");
+    setText("Eclipse.boot.text.1", "Welcome to Eclipse.\nA better jailbreak for All OSes");
     setText("Eclipse.boot.icon.1", "Battery");
     setText("Eclipse.boot.icon.2", "Shortcuts");
     setText("Eclipse.boot.icon.3", "Themezer");
@@ -191,24 +174,59 @@ function SetLanguage(dalang) {
     //Eclipse.accessibility
     setText("Eclipse.clickerx.button.1", "Back");
     setText("Eclipse.accessibility.button.2", "High Contrast Mode");
+  } else {
+    setText("p.icon", "Tewam");
+    //Eclipse.boot
+    setText("Eclipse.boot.text.1", "sowi a Tewam. e pimo;sanja kuwirr anum mom wewom;es");
+    setText("Eclipse.boot.icon.1", "poko");
+    setText("Eclipse.boot.icon.2", "pon;je");
+    setText("Eclipse.boot.icon.3", "tupom;sanja");
+    setText("Eclipse.boot.icon.4", "narr'keno");
+    setText("Eclipse.boot.icon.5", "minen;ja");
+    setText("Eclipse.boot.icon.6", "torr");
+    setText("Eclipse.boot.icon.7", "torr");
+    setText("Eclipse.boot.icon.8", "torr");
+    setText("Eclipse.boot.button.1", "sim");
+    setText("Eclipse.boot.button.2", "semam");
+    setProperty("Eclipse.boot.icon.3", "font-size", 11);
+    setProperty("Eclipse.boot.icon.5", "font-size", 14);
+    //Eclipse.battmgr
+    setText("Eclipse.battmgr.button.2", "sim");
+    setText("Eclipse.battmgr.button.1", "mesirr poko");
+    setText("Eclipse.battmgr.button.3", "wuwo mesirr poko");
+    //Eclipse.shortcuts
+    setText("Eclipse.shortcuts.button.1", "sim");
+    setText("Eclipse.shortcuts.button.2", "nitom mom miwam");
+    setText("Eclipse.shortcuts.button.3", "wurr;desa kurr");
+    setText("Eclipse.shortcuts.button.4", "som;fel");
+    //Eclipse.clickerx
+    setText("Eclipse.clickerx.button.1", "sim");
+    setText("Eclipse.clickerx.button.2", "narr!");
+    //Eclipse.accessibility
+    setText("Eclipse.accessibility.button.1", "sim");
+    setText("Eclipse.accessibility.button.2", "tamin;eja pu");
   }
 }
 //fixes for sapphireOS cuz luke is a bad programmer
 function Patches() {
-  
+  timedLoop(1, function() {
+    pirated = 0;
+    nat = 0;
+  });
 }
 //The actual Code for Eclipse
 function Code() {
-  Patches();
   setScreen(Homescreen);
   if (currentOS == "AudioOS") {
     BetterElementMakerAPI.Button("p.icon", "87", "235", "140", "40", "10", "black", "white", "Eclipse", "white");
   } else if (currentOS == "AuroraOS") {
     BetterElementMakerAPI.Button("p.icon", "87", "345", "140", "40", "10", "black", "white", "Eclipse", "white");
+    Patches();
   } else {
     BetterElementMakerAPI.Button("p.icon", "87", "355", "140", "40", "10", "black", "white", "Eclipse", "white");
   }
   setProperty("p.icon", "border-width", 3);
+  SetLanguage("English");
   //boot
   setProperty("Eclipse.accessibility.dropdown.1", "options", ["English", "Dock", "Dock Script"]);
   setScreen("Eclipse.themezer");
@@ -258,12 +276,17 @@ function Code() {
   onEvent("Eclipse.shortcuts.button.2", "click", function( ) {
     IAA();
   });
-  hideElement("Eclipse.shortcuts.button.3");
+  onEvent("Eclipse.shortcuts.button.3", "click", function( ) {
+    console.log("Developer Mode Accessed");
+    dev = 1;
+    isBooted = 1;
+    showElement("icon4");
+  });
   hideElement("Eclipse.shortcuts.button.4");
   //Accessibility
   onEvent("Eclipse.accessibility.button.1", "click", function( ) {
-    if (getNumber("Eclipse.accessibility.dropdown.1") == "Dock") {
-      SetLanguage("Dock");
+    if (getText("Eclipse.accessibility.dropdown.1") == "Dock") {
+      SetLanguage("Dockk");
     } else if ((getText("Eclipse.accessibility.dropdown.1") == "Dock Script")) {
       SetLanguage("Dock Script");
     } else {
@@ -272,7 +295,7 @@ function Code() {
     setScreen("Eclipse.boot");
   });
   onEvent("Eclipse.accessibility.button.2", "click", function( ) {
-    Themezer("Black", "White", "White");
+    Themezer("Black", "White", "White", "White");
   });
   //Themezer
   onEvent("Eclipse.themezer.button.1", "click", function( ) {
@@ -414,8 +437,104 @@ function Code() {
     setScreen("Eclipse.boot");
   });
 }
+//installs all apps in specified OS
 function IAA() {
   InstallApp(1);
+  musicinstalled = 1;
+  if (aiappinstalled == 0) {
+    if (notesinstalled == 0) {
+      if (dev==0) {
+        setPosition("icon5" + "", 190, 30);
+      } else {
+        setPosition("icon5" + "", 250, 30);
+      }
+    } else {
+      if (dev==0) {
+        setPosition("icon5" + "", 250, 30);
+      } else {
+        setPosition("icon5" + "", 10, 90);
+      }
+    }
+  } else {
+    if (notesinstalled == 0) {
+      if (dev==0) {
+        setPosition("icon5" + "", 250, 30);
+      } else {
+        setPosition("icon5" + "", 10, 90);
+      }
+    } else {
+      if (dev==0) {
+        setPosition("icon5" + "", 10, 90);
+      } else {
+        setPosition("icon5" + "", 70, 90);
+      }
+    }
+  }
+  setProperty("icon5", "image", "icon://fa-music");
+  InstallApp(2);
+  notesinstalled = 1;
+  if (aiappinstalled == 0) {
+    if (musicinstalled == 0) {
+      if (dev==0) {
+        setPosition("icon6" + "", 190, 30);
+      } else {
+        setPosition("icon6" + "", 250, 30);
+      }
+    } else {
+      if (dev==0) {
+        setPosition("icon6" + "", 250, 30);
+      } else {
+        setPosition("icon6" + "", 10, 90);
+      }
+    }
+  } else {
+    if (musicinstalled == 0) {
+      if (dev==0) {
+        setPosition("icon6" + "", 250, 30);
+      } else {
+        setPosition("icon6" + "", 10, 90);
+      }
+    } else {
+      if (dev==0) {
+        setPosition("icon6" + "", 10, 90);
+      } else {
+        setPosition("icon6" + "", 70, 90);
+      }
+    }
+  }
+  setProperty("icon6", "image", "icon://fa-sticky-note-o");
+  InstallApp(3);
+  aiappinstalled = 1;
+  if (notesinstalled == 0) {
+    if (musicinstalled == 0) {
+      if (dev==0) {
+        setPosition("icon7" + "", 190, 30);
+      } else {
+        setPosition("icon7" + "", 250, 30);
+      }
+    } else {
+      if (dev==0) {
+        setPosition("icon7" + "", 250, 30);
+      } else {
+        setPosition("icon7" + "", 10, 90);
+      }
+    }
+  } else {
+    if (musicinstalled == 0) {
+      if (dev==0) {
+        setPosition("icon7" + "", 250, 30);
+      } else {
+        setPosition("icon7" + "", 10, 90);
+      }
+    } else {
+      if (dev==0) {
+        setPosition("icon7" + "", 10, 90);
+      } else {
+        setPosition("icon7" + "", 70, 90);
+      }
+    }
+  }
+  setProperty("icon7", "image", "icon://fa-smile-o");
 }
 //helps Themzer()
 function ThemezerHelper(ID, Type, bgcolor, bcolor, accentcolor, txtcolor) {
@@ -449,55 +568,6 @@ function ThemezerHelper(ID, Type, bgcolor, bcolor, accentcolor, txtcolor) {
   }
 }
 //Themezer Script
-function Themezer(bgcolor, bcolor, accentcolor, txtcolor) {
-  ThemezerHelper("p.icon", "button", bgcolor, bcolor, accentcolor, txtcolor);
-  //Home
-  ThemezerHelper("Bar.0", "bar", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("icon1", "button", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("icon2", "button", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("icon3", "button", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("icon4", "button", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("icon5", "button", bgcolor, bcolor, accentcolor, txtcolor);
-  //App.appstore
-  ThemezerHelper("Bar.3", "bar", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("Bar.3.back", "bar", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("Window.3", "bg", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("store.title", "label", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("appstore.music.title", "text", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("appstore.icon1", "icon", bgcolor, "rgba(0,0,0,0)", accentcolor, txtcolor);
-  ThemezerHelper("appstore.install1", "button", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("appstore.uninstall1", "button", bgcolor, bcolor, accentcolor, txtcolor);
-  //App.settings
-  ThemezerHelper("Bar.1", "bar", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("Bar.1.back", "bar", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("Window.1", "bg", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("settings.about", "button", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("settings.wallpapers", "button", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("settings.themes", "button", bgcolor, bcolor, accentcolor, txtcolor);
-  //App.settings.about
-  ThemezerHelper("Bar.2", "bar", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("Bar.2.back", "bar", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("Window.2", "bg", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("setttings.about.title", "label", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("settings.ver", "text", bgcolor, bcolor, accentcolor, txtcolor);
-  //App.terminal
-  ThemezerHelper("Window.5", "bg", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("Bar.5", "bar", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("Bar.5.back", "bar", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("command", "text", bgcolor, "white", accentcolor, txtcolor);
-  ThemezerHelper("param1", "text", bgcolor, "white", accentcolor, txtcolor);
-  ThemezerHelper("param2", "text", bgcolor, "white", accentcolor, txtcolor);
-  ThemezerHelper("run", "button", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("console", "text", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("terminal.label", "label", bgcolor, bcolor, accentcolor, txtcolor);
-  //App.tips
-  ThemezerHelper("Bar.4", "bar", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("Bar.4.back", "bar", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("Window.4", "bg", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("tips.new", "text", bgcolor, bcolor, accentcolor, txtcolor);
-  ThemezerHelper("tips.label", "label", bgcolor, bcolor, accentcolor, txtcolor);
-  console.clear();
-}
 //Code Specific to AudioOS
 function AudioOS() {
   //Patches - General Fixes
@@ -512,34 +582,20 @@ function AudioOS() {
   onEvent("Eclipse.battmgr.button.2", "click", function( ) {
     setScreen("Eclipse.boot");
   });
-  onEvent("Eclipse.battmgr.button.1", "click", function( ) {
-    for (var i = 0; i < 50; i++) {
-      isinf = 0;
-      batteries = 100;
-    }
-  });
-  if (currentOS != "AudioOS") {
-    timedLoop(70, function() {
-      if (isinf == 1) {
-        batteries = "Infinite";
-      }
-      setText("Eclipse.battmgr.label", bat + "%");
-    });
-  }
-  onEvent("Eclipse.battmgr.button.3", "click", function( ) {
-    isinf = 1;
-    batteries = "Infinite";
-    setText("Eclipse.battmgr.label", bat + "%");
-  });
 }
 //Code Specific to AuroraOS
 function AuroraOS() {
+  setScreen("Login");
   //enable dev mode
   ownerid = uid;
   //pos stuffs
   setPosition("batteries", 5, 5, 100, 18);
   setProperty("batteries", "text-align", "left");
-  setProperty("Bar.0", "font-size", 22);
+  setProperty("batteries", "font-size", 15);
+  setProperty("batteries", "height", 100);
+  setProperty("batteries", "y", 1);
+  setProperty("batteries", "x", -7);
+  setProperty("batteryicon", "x", 50);
   //batt peach app
   var isinf = 0;
   onEvent("Eclipse.battmgr.button.2", "click", function( ) {
@@ -551,14 +607,12 @@ function AuroraOS() {
       bat = 100;
     }
   });
-  if (currentOS != "AudioOS") {
-    timedLoop(70, function() {
-      if (isinf == 1) {
-        bat = "Infinite";
-      }
-      setText("Eclipse.battmgr.label", bat + "%");
-    });
-  }
+  timedLoop(70, function() {
+    if (isinf == 1) {
+      bat = "Infinite";
+    }
+    setText("Eclipse.battmgr.label", bat + "%");
+  });
   onEvent("Eclipse.battmgr.button.3", "click", function( ) {
     isinf = 1;
     bat = "Infinite";
@@ -590,5 +644,37 @@ function EchoLake() {
     isinf = 1;
     batt = "Infinite";
     setText("Eclipse.battmgr.label", bat + "%");
+  });
+}
+//Code Specific to the TestOS made for testing Eclipse
+function TestOS() {
+  var bat = 100;
+  //batt peach app
+  var isinf = 0;
+  onEvent("Eclipse.battmgr.button.2", "click", function( ) {
+    setScreen("Eclipse.boot");
+  });
+  onEvent("Eclipse.battmgr.button.1", "click", function( ) {
+    for (var i = 0; i < 50; i++) {
+      isinf = 0;
+      bat = 100;
+    }
+  });
+  timedLoop(2000, function() {
+    bat = bat - 1;
+    setText("batt", bat + "%");
+  });
+  timedLoop(70, function() {
+    if (isinf == 1) {
+      bat = "Infinite";
+    }
+    setText("Eclipse.battmgr.label", bat + "%");
+    setText("batt", bat + "%");
+  });
+  onEvent("Eclipse.battmgr.button.3", "click", function( ) {
+    isinf = 1;
+    bat = "Infinite";
+    setText("Eclipse.battmgr.label", bat + "%");
+    setText("batt", bat + "%");
   });
 }
